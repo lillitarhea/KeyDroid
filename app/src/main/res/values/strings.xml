@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">KeyDroid</string>
+    <string name="title_activity_rating_scale">ratingScale</string>
+</resources>
