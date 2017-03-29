@@ -34,12 +34,24 @@ public class DatabaseAdapter {
 
         private static final String DATABASE_NAME = "Droiddb";
         private static final String TABLE_USER = "USER";
+        private static final String TABLE_SAMPLE = "SAMPLE";
         private static final int DATABASE_VERSION = 3;
         private static final String UID = "_id";
         private static final String NAME = "Name";
         private static final String AGE = "Age";
+        private static final String DURATION = "Duration";
+        private static final String LATENCY = "Latency";
+        private static final String VALENCE = "Valence";
+        private static final String AROUSAL = "Arousal";
+
+
+
         private static final String CREATE_TABLE_USER = "CREATE TABLE " + TABLE_USER + " (" + UID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + NAME + " VARCHAR(255), " + AGE + " INTEGER);";
+        private static final String CREATE_TABLE_SAMPLE = "CREATE TABLE " + TABLE_SAMPLE + " (" + UID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + LATENCY + " VARCHAR(255), " + DURATION + " VARCHAR(255)," + VALENCE + "INTEGER, " + AROUSAL +  "INTEGER, "+ "FOREIGN KEY(" + UID + ") REFERENCES "+ TABLE_USER + "(UID) " + ")";
+
+
         private static final String DROP_TABLE_USER = "DROP TABLE IF EXISTS"+ TABLE_USER;
+        private static final String DROP_TABLE_SAMPLE = "DROP TABLE IF EXISTS"+ TABLE_USER;
         private Context context;
 
         public DatabaseHelper(Context context) {
@@ -53,6 +65,7 @@ public class DatabaseAdapter {
         public void onCreate(SQLiteDatabase db) {
             try {
                 db.execSQL(CREATE_TABLE_USER);
+                db.execSQL(CREATE_TABLE_SAMPLE);
                 com.example.android.keydroid.Message.message(context, "OnCreate is called");
             } catch (SQLException e) {
                 com.example.android.keydroid.Message.message(context, "" + e);
@@ -64,6 +77,8 @@ public class DatabaseAdapter {
             try {
                 com.example.android.keydroid.Message.message(context, "OnUpgrade is called");
                 db.execSQL(DROP_TABLE_USER);
+                db.execSQL(DROP_TABLE_SAMPLE);
+
                 onCreate(db);
             } catch (SQLException e) {
                 com.example.android.keydroid.Message.message(context, "" + e);

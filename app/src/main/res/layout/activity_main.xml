@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
         android:ems="10"
-        android:id="@+id/editText"
+        android:id="@+id/editUserName"
         android:layout_marginTop="66dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
@@ -25,10 +25,10 @@
         android:layout_height="wrap_content"
         android:inputType="number"
         android:ems="10"
-        android:id="@+id/editText2"
-        android:layout_below="@+id/editText"
-        android:layout_alignLeft="@+id/editText"
-        android:layout_alignStart="@+id/editText"
+        android:id="@+id/editAge"
+        android:layout_below="@+id/editUserName"
+        android:layout_alignLeft="@+id/editUserName"
+        android:layout_alignStart="@+id/editUserName"
         android:layout_marginTop="65dp" />
 
     <Button
@@ -47,10 +47,10 @@
         android:text="Full Name"
         android:id="@+id/textView"
         android:textSize="30dp"
-        android:layout_alignBaseline="@+id/editText"
-        android:layout_alignBottom="@+id/editText"
-        android:layout_toLeftOf="@+id/editText"
-        android:layout_toStartOf="@+id/editText" />
+        android:layout_alignBaseline="@+id/editUserName"
+        android:layout_alignBottom="@+id/editUserName"
+        android:layout_toLeftOf="@+id/editUserName"
+        android:layout_toStartOf="@+id/editUserName" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -58,7 +58,7 @@
         android:text="Age"
         android:id="@+id/textView2"
         android:textSize="30dp"
-        android:layout_alignBottom="@+id/editText2"
+        android:layout_alignBottom="@+id/editAge"
         android:layout_toLeftOf="@+id/Submit"
         android:layout_toStartOf="@+id/Submit"/>
 </RelativeLayout>
