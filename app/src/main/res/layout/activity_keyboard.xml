@@ -150,5 +150,15 @@
         android:layout_alignRight="@+id/two"
         android:layout_alignEnd="@+id/two" />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Next Sample"
+        android:id="@+id/NextSample"
+        android:onClick="NextSample"
+        android:layout_alignParentBottom="true"
+        android:layout_alignLeft="@+id/button"
+        android:layout_alignStart="@+id/button" />
+
 
 </RelativeLayout>

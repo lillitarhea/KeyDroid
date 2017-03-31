@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     DatabaseAdapter dbhelper;
@@ -28,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
         String user=userName.getText().toString();
         String age=Age.getText().toString();
         long id=DatabaseAdapter.insertData(user,age);
+        Toast.makeText(this,"id is "+id,Toast.LENGTH_LONG).show();
         if (id<0)
         {
             Message.message(this,"Unsuccessful");
@@ -40,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         Intent intent = new Intent(context, PlayMusic.class);
+        intent.putExtra("user_id",id);
         startActivity(intent);
 
             }

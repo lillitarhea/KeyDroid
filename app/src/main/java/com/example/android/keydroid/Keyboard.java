@@ -1,16 +1,20 @@
 package com.example.android.keydroid;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import java.io.FileOutputStream;
 import java.util.Vector;
 
 public class Keyboard extends AppCompatActivity implements View.OnTouchListener {
-
+    DatabaseAdapter dbhelper;
     public Button mb1, mb2, mb3, mb4, mb5, mb6, mb7, mb8, mb9, mb0;
     TextView txtView;
     String display;
@@ -28,7 +32,7 @@ public class Keyboard extends AppCompatActivity implements View.OnTouchListener 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_keyboard);
-
+        dbhelper = new DatabaseAdapter(this.getApplicationContext());
 
         mb1 = (Button) findViewById(R.id.one);
         mb2 = (Button) findViewById(R.id.two);
@@ -90,9 +94,44 @@ public class Keyboard extends AppCompatActivity implements View.OnTouchListener 
 
     }
 
+    public void NextSample(View view) {
+        final Context context = this;
 
+        Bundle extras = getIntent().getExtras();
+        String pleasure = extras.getString("PLEASURE");
+        String arousal = extras.getString("AROUSAL");
+        int user_id = extras.getInt("USER_ID");
+        String duration = Long.toString(duration_sum);
+        String latency = Long.toString(latency_sum);
+        Users u = DatabaseAdapter.insertSamples(user_id,latency, duration, pleasure, arousal);
+        Toast.makeText(this, "I'm here", Toast.LENGTH_SHORT).show();
+        if (u == null) {
+            Message.message(this, "Unsuccessful");
+        } else {
+            Toast.makeText(this, getFilesDir()+"", Toast.LENGTH_LONG).show();
+            String filename = "myfile.txt";
+            String string = u.getId() + "," + u.getDuration() + "," + u.getLatency() + "," + u.getValence() + "," + u.getArousal()+"\n";
+            FileOutputStream outputStream;
+
+            try {
+
+                outputStream = openFileOutput(filename, Context.MODE_APPEND);
+
+                outputStream.write(string.getBytes());
+                Toast.makeText(this, "123256789", Toast.LENGTH_LONG).show();
+                outputStream.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+
+            }
+            Intent intent = new Intent(context, PlayMusic.class);
+            startActivity(intent);
+
+        }
+
+
+    }
 }
-
 
 
 
