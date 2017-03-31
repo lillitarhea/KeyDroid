@@ -3,14 +3,20 @@ package com.example.android.keydroid;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Vector;
 
 public class Keyboard extends AppCompatActivity implements View.OnTouchListener {
@@ -101,6 +107,7 @@ public class Keyboard extends AppCompatActivity implements View.OnTouchListener 
         String pleasure = extras.getString("PLEASURE");
         String arousal = extras.getString("AROUSAL");
         int user_id = extras.getInt("USER_ID");
+        String name = extras.getString("user_name");
         String duration = Long.toString(duration_sum);
         String latency = Long.toString(latency_sum);
         Users u = DatabaseAdapter.insertSamples(user_id,latency, duration, pleasure, arousal);
@@ -109,11 +116,13 @@ public class Keyboard extends AppCompatActivity implements View.OnTouchListener 
             Message.message(this, "Unsuccessful");
         } else {
             Toast.makeText(this, getFilesDir()+"", Toast.LENGTH_LONG).show();
-            String filename = "myfile.txt";
-            String string = u.getId() + "," + u.getDuration() + "," + u.getLatency() + "," + u.getValence() + "," + u.getArousal()+"\n";
+
+
+            //String filename = "myfile.txt";
+            String string = name + "," + u.getId() + "," + u.getDuration() + "," + u.getLatency() + "," + u.getValence() + "," + u.getArousal();
             FileOutputStream outputStream;
 
-            try {
+            /*try {
 
                 outputStream = openFileOutput(filename, Context.MODE_APPEND);
 
@@ -123,13 +132,52 @@ public class Keyboard extends AppCompatActivity implements View.OnTouchListener 
             } catch (Exception e) {
                 e.printStackTrace();
 
+            }*/
+
+            File root = android.os.Environment.getExternalStorageDirectory();
+            File dir = new File (root.getAbsolutePath() + "/lil");
+            dir.mkdirs();
+            File file = new File(dir, "Keydroid.csv");
+            try {
+                FileOutputStream f = new FileOutputStream(file,true);
+                PrintWriter pw = new PrintWriter(f);
+                pw.println(string);
+                pw.flush();
+
+                pw.close();
+                f.close();
+                Toast.makeText(this, file.toString(), Toast.LENGTH_LONG).show();
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
             }
+
             Intent intent = new Intent(context, PlayMusic.class);
+            intent.putExtra("user_id",user_id);
+            intent.putExtra("user_name",name);
             startActivity(intent);
 
         }
 
 
+    }
+    public boolean isExternalStorageWritable() {
+        String state = Environment.getExternalStorageState();
+        if (Environment.MEDIA_MOUNTED.equals(state)) {
+            return true;
+        }
+        return false;
+    }
+
+    /* Checks if external storage is available to at least read */
+    public boolean isExternalStorageReadable() {
+        String state = Environment.getExternalStorageState();
+        if (Environment.MEDIA_MOUNTED.equals(state) ||
+                Environment.MEDIA_MOUNTED_READ_ONLY.equals(state)) {
+            return true;
+        }
+        return false;
     }
 }
 

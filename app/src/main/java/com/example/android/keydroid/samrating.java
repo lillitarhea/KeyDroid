@@ -11,11 +11,14 @@ public class samrating extends AppCompatActivity {
     String pleasure;
     String arousal;
     int id;
+    String name;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_samrating);
-        id=getIntent().getIntExtra("user_id",0);
+        Intent intent = getIntent();
+        id = intent.getIntExtra("user_id",-2);
+        name = intent.getStringExtra("user_name");
     }
 
 
@@ -24,10 +27,54 @@ public class samrating extends AppCompatActivity {
        pleasure="1";
 
     }
+    public void pleasure2(View view)
+    {
+        pleasure="2";
+
+    }
+    public void pleasure3(View view)
+    {
+        pleasure="3";
+
+    }
+    public void pleasure4(View view)
+    {
+        pleasure="4";
+
+    }
+    public void pleasure5(View view)
+    {
+        pleasure="5";
+
+    }
 
     public void arousal1(View view)
     {
         arousal="1";
+
+    }
+
+    public void arousal2(View view)
+    {
+        arousal="2";
+
+    }
+
+    public void arousal3(View view)
+    {
+        arousal="3";
+
+    }
+
+    public void arousal4(View view)
+    {
+        arousal="4";
+
+    }
+
+    public void arousal5(View view)
+    {
+        arousal="5";
 
     }
 
@@ -44,7 +91,8 @@ public class samrating extends AppCompatActivity {
         Bundle extras = new Bundle();
         extras.putString("PLEASURE",pleasure);
         extras.putString("AROUSAL",arousal);
-        extras.putInt("USER_ID",id);
+        extras.putInt("USER_ID", id);
+        extras.putString("user_name", name);
         intent.putExtras(extras);
         startActivity(intent);
 

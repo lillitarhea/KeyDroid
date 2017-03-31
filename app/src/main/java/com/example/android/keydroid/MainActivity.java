@@ -43,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
 
         Intent intent = new Intent(context, PlayMusic.class);
         intent.putExtra("user_id",id);
+        intent.putExtra("user_name",user);
         startActivity(intent);
 
             }

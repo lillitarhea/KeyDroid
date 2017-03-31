@@ -23,25 +23,29 @@ public class DatabaseAdapter {
 
     public static long insertData(String user, String age) {
 
-        SQLiteDatabase db=helper.getWritableDatabase();
+        SQLiteDatabase db = helper.getWritableDatabase();
 
-        ContentValues contentValues=new ContentValues();
-        contentValues.put(DatabaseHelper.NAME,user);
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(DatabaseHelper.NAME, user);
         contentValues.put(DatabaseHelper.AGE, age);
-        long id=db.insert(DatabaseHelper.TABLE_USER,null,contentValues);
-        if(id > 0){
+        long id = db.insert(DatabaseHelper.TABLE_USER, null, contentValues);
+        if (id > 0) {
             String selectQuery = "SELECT _id FROM USER WHERE Name=? AND Age=?";
-            Cursor c = db.rawQuery(selectQuery, new String[] { user,age });
+            Cursor c = db.rawQuery(selectQuery, new String[]{user, age});
             if (c.moveToFirst()) {
                 int t = c.getInt(c.getColumnIndex("_id"));
                 //System.out.println("\n YOU SUCK THAT WHY ID IS "+t);
-            return t;
+                return t;
+
+            /*Users u = new Users();
+            u.setName(user);
+            u.setAge(age);
+            return u;*/
             }
         }
         return id;
     }
-
-    public static Users insertSamples(int userid,String latency, String duration,String valence,String arousal ) {
+    public static Users insertSamples(int userid, String latency, String duration,String valence,String arousal ) {
 
         SQLiteDatabase db=helper.getWritableDatabase();
 
@@ -71,7 +75,7 @@ public class DatabaseAdapter {
         private static final String DATABASE_NAME = "Droiddb";
         private static final String TABLE_USER = "USER";
         private static final String TABLE_SAMPLE = "SAMPLE";
-        private static final int DATABASE_VERSION = 9;
+        private static final int DATABASE_VERSION = 10;
         private static final String UID = "_id";
         private static final String NAME = "Name";
         private static final String AGE = "Age";

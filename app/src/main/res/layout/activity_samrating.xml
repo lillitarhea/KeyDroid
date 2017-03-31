@@ -26,7 +26,8 @@
         android:src="@drawable/pleasure_2"
         android:layout_alignParentTop="true"
         android:layout_toRightOf="@+id/pleasure_1"
-        android:layout_toEndOf="@+id/pleasure_1" />
+        android:layout_toEndOf="@+id/pleasure_1"
+        android:onClick="pleasure2"/>
 
 
     <ImageButton
@@ -36,7 +37,8 @@
         android:src="@drawable/pleasure_3"
         android:layout_alignParentTop="true"
         android:layout_toRightOf="@+id/pleasure_2"
-        android:layout_toEndOf="@+id/pleasure_2" />
+        android:layout_toEndOf="@+id/pleasure_2"
+        android:onClick="pleasure3"/>
 
     <ImageButton
         android:layout_width="110dp"
@@ -45,7 +47,8 @@
         android:src="@drawable/pleasure_4"
         android:layout_alignParentTop="true"
         android:layout_toRightOf="@+id/pleasure_3"
-        android:layout_toEndOf="@+id/pleasure_3" />
+        android:layout_toEndOf="@+id/pleasure_3"
+        android:onClick="pleasure4"/>
 
     <ImageButton
         android:layout_width="110dp"
@@ -54,7 +57,8 @@
         android:src="@drawable/pleasure_5"
         android:layout_alignParentTop="true"
         android:layout_toRightOf="@+id/pleasure_4"
-        android:layout_toEndOf="@+id/pleasure_4" />
+        android:layout_toEndOf="@+id/pleasure_4"
+        android:onClick="pleasure5"/>
 
     <ImageButton
         android:layout_width="110dp"
@@ -74,7 +78,8 @@
         android:src="@drawable/arousal_2"
         android:layout_alignTop="@+id/arousal_1"
         android:layout_alignLeft="@+id/pleasure_2"
-        android:layout_alignStart="@+id/pleasure_2" />
+        android:layout_alignStart="@+id/pleasure_2"
+        android:onClick="arousal2"/>
 
     <ImageButton
         android:layout_width="110dp"
@@ -83,7 +88,8 @@
         android:src="@drawable/arousal_3"
         android:layout_alignTop="@+id/arousal_2"
         android:layout_toRightOf="@+id/pleasure_2"
-        android:layout_toEndOf="@+id/pleasure_2" />
+        android:layout_toEndOf="@+id/pleasure_2"
+        android:onClick="arousal3"/>
 
     <ImageButton
         android:layout_width="110dp"
@@ -92,7 +98,8 @@
         android:src="@drawable/arousal_4"
         android:layout_alignTop="@+id/arousal_3"
         android:layout_alignLeft="@+id/pleasure_4"
-        android:layout_alignStart="@+id/pleasure_4" />
+        android:layout_alignStart="@+id/pleasure_4"
+        android:onClick="arousal4"/>
 
     <ImageButton
         android:layout_width="110dp"
@@ -102,7 +109,8 @@
         android:layout_alignTop="@+id/arousal_4"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:layout_alignBottom="@+id/arousal_4" />
+        android:layout_alignBottom="@+id/arousal_4"
+        android:onClick="arousal5"/>
 
     <Button
         android:layout_width="wrap_content"
