@@ -106,12 +106,12 @@ public class Keyboard extends AppCompatActivity implements View.OnTouchListener 
         Bundle extras = getIntent().getExtras();
         String pleasure = extras.getString("PLEASURE");
         String arousal = extras.getString("AROUSAL");
-        int user_id = extras.getInt("USER_ID");
+        long user_id = extras.getLong("USER_ID");
         String name = extras.getString("user_name");
         String duration = Long.toString(duration_sum);
         String latency = Long.toString(latency_sum);
         Users u = DatabaseAdapter.insertSamples(user_id,latency, duration, pleasure, arousal);
-        Toast.makeText(this, "I'm here", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, "I'm here", Toast.LENGTH_SHORT).show();
         if (u == null) {
             Message.message(this, "Unsuccessful");
         } else {
@@ -137,7 +137,7 @@ public class Keyboard extends AppCompatActivity implements View.OnTouchListener 
             File root = android.os.Environment.getExternalStorageDirectory();
             File dir = new File (root.getAbsolutePath() + "/lil");
             dir.mkdirs();
-            File file = new File(dir, "Keydroid.csv");
+            File file = new File(dir, "Samples6.csv");
             try {
                 FileOutputStream f = new FileOutputStream(file,true);
                 PrintWriter pw = new PrintWriter(f);

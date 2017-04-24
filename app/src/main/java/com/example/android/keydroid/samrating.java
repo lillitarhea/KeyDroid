@@ -10,14 +10,14 @@ import android.view.View;
 public class samrating extends AppCompatActivity {
     String pleasure;
     String arousal;
-    int id;
+    long id;
     String name;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_samrating);
         Intent intent = getIntent();
-        id = intent.getIntExtra("user_id",-2);
+        id = intent.getLongExtra("user_id",-2);
         name = intent.getStringExtra("user_name");
     }
 
@@ -91,7 +91,7 @@ public class samrating extends AppCompatActivity {
         Bundle extras = new Bundle();
         extras.putString("PLEASURE",pleasure);
         extras.putString("AROUSAL",arousal);
-        extras.putInt("USER_ID", id);
+        extras.putLong("USER_ID", id);
         extras.putString("user_name", name);
         intent.putExtras(extras);
         startActivity(intent);

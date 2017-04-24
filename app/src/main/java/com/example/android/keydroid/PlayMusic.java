@@ -13,7 +13,7 @@ import android.widget.Toast;
 
 public class PlayMusic extends AppCompatActivity {
 Button button;
-    int id;
+    long id;
     String name;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,16 +22,18 @@ Button button;
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         Intent intent = getIntent();
-        id = intent.getIntExtra("user_id",-1);
+        id = intent.getLongExtra("user",0);
         Toast.makeText(this, "Play Music id is " + id, Toast.LENGTH_LONG).show();
         name = intent.getStringExtra("user_name");
     }
+
+
 
     public void goNext(View view)
     {
         final Context context = this;
         Intent intent = new Intent(context, samrating.class);
-        intent.putExtra("user_id",id);
+        intent.putExtra("user_id", id);
         intent.putExtra("user_name",name);
         startActivity(intent);
     }

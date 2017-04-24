@@ -28,8 +28,8 @@ public class MainActivity extends AppCompatActivity {
 
         String user=userName.getText().toString();
         String age=Age.getText().toString();
-        long id=DatabaseAdapter.insertData(user,age);
-        Toast.makeText(this,"id is "+id,Toast.LENGTH_LONG).show();
+        long id=DatabaseAdapter.insertData(user, age);
+
         if (id<0)
         {
             Message.message(this,"Unsuccessful");
@@ -42,7 +42,8 @@ public class MainActivity extends AppCompatActivity {
         }
 
         Intent intent = new Intent(context, PlayMusic.class);
-        intent.putExtra("user_id",id);
+        intent.putExtra("user",id);
+        Toast.makeText(this,"id is "+id,Toast.LENGTH_LONG).show();
         intent.putExtra("user_name",user);
         startActivity(intent);
 

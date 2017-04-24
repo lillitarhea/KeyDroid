@@ -45,7 +45,7 @@ public class DatabaseAdapter {
         }
         return id;
     }
-    public static Users insertSamples(int userid, String latency, String duration,String valence,String arousal ) {
+    public static Users insertSamples(long userid, String latency, String duration,String valence,String arousal ) {
 
         SQLiteDatabase db=helper.getWritableDatabase();
 
@@ -75,7 +75,7 @@ public class DatabaseAdapter {
         private static final String DATABASE_NAME = "Droiddb";
         private static final String TABLE_USER = "USER";
         private static final String TABLE_SAMPLE = "SAMPLE";
-        private static final int DATABASE_VERSION = 10;
+        private static final int DATABASE_VERSION = 12;
         private static final String UID = "_id";
         private static final String NAME = "Name";
         private static final String AGE = "Age";
@@ -87,7 +87,7 @@ public class DatabaseAdapter {
 
 
         private static final String CREATE_TABLE_USER = "CREATE TABLE " + TABLE_USER + " (" + UID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + NAME + " VARCHAR(255), " + AGE + " INTEGER);";
-        private static final String CREATE_TABLE_SAMPLE = "CREATE TABLE " + TABLE_SAMPLE + " (" + UID + " INTEGER , " + LATENCY + " VARCHAR(255), " + DURATION + " VARCHAR(255)," + VALENCE + " VARCHAR(255), " + AROUSAL +  " VARCHAR(255) )";
+        private static final String CREATE_TABLE_SAMPLE = "CREATE TABLE " + TABLE_SAMPLE + " (" + UID + " INTEGER, " + LATENCY + " VARCHAR(255), " + DURATION + " VARCHAR(255)," + VALENCE + " VARCHAR(255), " + AROUSAL +  " VARCHAR(255) )";
         private static final String SELECT_ID= "SELECT" +UID+ "FROM" + TABLE_USER + "WHERE" +UID+ "=(SELECT MAX(" + UID + " ) FROM" +TABLE_USER+ ");";
 
         //private static final String CREATE_TABLE_SAMPLE = "CREATE TABLE " + TABLE_SAMPLE + " (" + UID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + DURATION + " VARCHAR(255), " + LATENCY + " VARCHAR(255), " + AROUSAL + " INTEGER, " + VALENCE + " INTEGER);";

@@ -4,7 +4,7 @@ package com.example.android.keydroid;
  * Created by Lill_Rhea on 30/03/2017.
  */
 public class Users {
-    public int id;
+    public long id;
     public String Name;
     public String Age;
     public String Duration;
@@ -13,11 +13,11 @@ public class Users {
     public String Arousal;
 
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
